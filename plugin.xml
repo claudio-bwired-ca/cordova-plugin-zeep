@@ -73,9 +73,15 @@
         <header-file src="src/ios/minizip/unzip.h"   />
         <source-file src="src/ios/minizip/mztools.c"   />
         <header-file src="src/ios/minizip/mztools.h"   />
+        <source-file src="src/ios/minizip/ioapi_buf.c"   />
+        <header-file src="src/ios/minizip/ioapi_buf.h"   />
+        <source-file src="src/ios/minizip/ioapi_mem.c"   />
+        <header-file src="src/ios/minizip/ioapi_mem.h"   />
         <source-file src="src/ios/minizip/ioapi.c"   />
         <header-file src="src/ios/minizip/ioapi.h"   />
         <header-file src="src/ios/minizip/crypt.h"   />
+        <source-file src="src/ios/minizip/minishared.c"   />
+        <header-file src="src/ios/minizip/minishared.h"   />
         <framework src="libz.dylib" />
     </platform>
 
@@ -94,6 +100,7 @@
 		<config-file target="config.xml" parent="/*">
 			<feature name="Zeep">
 				<param name="wp-package" value="Zeep"/>
+
 			</feature>
 		</config-file>
 		<framework src="src/wp/ICSharpCode.SharpZipLib.dll" custom="true"/>
