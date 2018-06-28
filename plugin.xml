@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin id="cordova-plugin-zeep" version="0.0.4" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-zeep-ionic3" version="0.0.4" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <name>Zeep</name>
-    <description>Cordova Zeep Plugin</description>
+    <description>Cordova Zeep Plugin Ioni3</description>
     <license>Apache 2.0</license>
-    <keywords>cordova,zeep,zip,unzip,FiNe,ecosystem:cordova,cordova-android,cordova-ios,cordova-windows</keywords>
+    <keywords>cordova,zeep,zip,ionic3,ionic-deploy,unzip,FiNe,ecosystem:cordova,cordova-android,cordova-ios,cordova-windows</keywords>
     <repo>https://github.com/FortuneN/cordova-plugin-zeep.git</repo>
     <issue>https://github.com/FortuneN/cordova-plugin-zeep/issues</issue>
 
@@ -65,12 +65,12 @@
         <header-file src="src/ios/aes/pwd2key.h" target-dir="Plugins/aes" />
         <source-file src="src/ios/aes/sha1.c" target-dir="Plugins/aes" />
         <header-file src="src/ios/aes/sha1.h" target-dir="Plugins/aes" />
-        <source-file src="src/ios/SSZipArchive.m" target-dir="Plugins/minizip" />
-        <header-file src="src/ios/SSZipArchive.h" target-dir="Plugins/minizip" />
-        <source-file src="src/ios/minizip/zip.c" target-dir="Plugins/minizip" />
-        <header-file src="src/ios/minizip/zip.h" target-dir="Plugins/minizip" />
-        <source-file src="src/ios/minizip/unzip.c" target-dir="Plugins/minizip" />
-        <header-file src="src/ios/minizip/unzip.h" target-dir="Plugins/minizip" />
+        <source-file src="src/ios/SSZIPArchive.m" target-dir="Plugins/minizip" />
+        <header-file src="src/ios/SSZIPArchive.h" target-dir="Plugins/minizip" />
+        <source-file src="src/ios/minizip/ZIP.c" target-dir="Plugins/minizip" />
+        <header-file src="src/ios/minizip/ZIP.h" target-dir="Plugins/minizip" />
+        <source-file src="src/ios/minizip/unZIP.c" target-dir="Plugins/minizip" />
+        <header-file src="src/ios/minizip/unZIP.h" target-dir="Plugins/minizip" />
         <source-file src="src/ios/minizip/mztools.c" target-dir="Plugins/minizip" />
         <header-file src="src/ios/minizip/mztools.h" target-dir="Plugins/minizip" />
         <source-file src="src/ios/minizip/ioapi.c" target-dir="Plugins/minizip" />

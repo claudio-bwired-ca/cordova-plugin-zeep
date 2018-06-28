@@ -26,7 +26,7 @@
  #endif*/
 
 #include "zlib.h"
-#include "unzip.h"
+#include "unZIP.h"
 
 #include "Common.h"
 
