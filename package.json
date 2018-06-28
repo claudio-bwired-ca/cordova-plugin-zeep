@@ -1,9 +1,9 @@
 {
-  "name": "cordova-plugin-zeep",
-  "version": "0.0.4",
-  "description": "Zip compression/decompression for the cordova/phonegap platform",
+  "name": "cordova-plugin-zeep-ionic3",
+  "version": "0.0.1",
+  "description": "Zip compression/decompression for the cordova/phonegap platform support ionic3 deploy (IOS no duplicates zip class)",
   "cordova": {
-    "id": "cordova-plugin-zeep",
+    "id": "cordova-plugin-zeep-ionic3",
     "platforms": [
       "ios",
       "android",
@@ -12,12 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FortuneN/cordova-plugin-zeep.git"
+    "url": "git+https://github.com/claudio-bwired-ca/cordova-plugin-zeep.git"
   },
   "keywords": [
     "cordova",
     "zeep",
     "zip",
+    "ionic3",
+    "ionic-deploy",
     "unzip",
     "FiNe",
     "ecosystem:cordova",
@@ -28,7 +30,7 @@
   "author": "Fortune Ngwenya",
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/FortuneN/cordova-plugin-zeep/issues"
+    "url": "https://github.com/claudio-bwired-ca/cordova-plugin-zeep/issues"
   },
-  "homepage": "https://github.com/FortuneN/cordova-plugin-zeep#readme"
+  "homepage": "https://github.com/claudio-bwired-ca/cordova-plugin-zeep#readme"
 }
