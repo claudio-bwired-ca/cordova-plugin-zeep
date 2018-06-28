@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <Cordova/CDVPlugin.h>
-#import "SSZIPArchive.h"
+#import "SSZipArchive.h"
 
 @interface FiNeZeep : CDVPlugin
 
