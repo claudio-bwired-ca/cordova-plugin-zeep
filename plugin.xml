@@ -43,7 +43,7 @@
         </config-file>
         <header-file src="src/ios/FiNeZeep.h" />
         <source-file src="src/ios/FiNeZeep.m" />
-        <header-file src="src/ios/Common.h" />
+        <header-file src="src/ios/SSZipCommon.h" />
         <header-file src="src/ios/aes/aes.h"   />
         <header-file src="src/ios/aes/aes_via_ace.h"   />
         <source-file src="src/ios/aes/aescrypt.c"   />
