@@ -9,6 +9,7 @@
     <repo>https://github.com/FortuneN/cordova-plugin-zeep.git</repo>
     <issue>https://github.com/FortuneN/cordova-plugin-zeep/issues</issue>
 
+    <dependency id="cordova-plugin-zip" version=">=2.0.0" />
     <dependency id="cordova-plugin-file" version=">=2.0.0" />
 
     <js-module name="Zeep" src="www/Zeep.js">
@@ -41,47 +42,6 @@
                 <param name="ios-package" value="FiNeZeep" />
             </feature>
         </config-file>
-        <header-file src="src/ios/FiNeZeep.h" />
-        <source-file src="src/ios/FiNeZeep.m" />
-        <header-file src="src/ios/SSZipCommon.h" />
-        <header-file src="src/ios/aes/aes.h"   />
-        <header-file src="src/ios/aes/aes_via_ace.h"   />
-        <source-file src="src/ios/aes/aescrypt.c"   />
-        <source-file src="src/ios/aes/aeskey.c"   />
-        <header-file src="src/ios/aes/aesopt.h"   />
-        <source-file src="src/ios/aes/aestab.c"   />
-        <header-file src="src/ios/aes/aestab.h"   />
-        <header-file src="src/ios/aes/brg_endian.h"   />
-        <header-file src="src/ios/aes/brg_types.h"   />
-        <source-file src="src/ios/aes/entropy.c"   />
-        <header-file src="src/ios/aes/entropy.h"   />
-        <source-file src="src/ios/aes/fileenc.c"   />
-        <header-file src="src/ios/aes/fileenc.h"   />
-        <source-file src="src/ios/aes/hmac.c"   />
-        <header-file src="src/ios/aes/hmac.h"   />
-        <source-file src="src/ios/aes/prng.c"   />
-        <header-file src="src/ios/aes/prng.h"   />
-        <source-file src="src/ios/aes/pwd2key.c"   />
-        <header-file src="src/ios/aes/pwd2key.h"   />
-        <source-file src="src/ios/aes/sha1.c"   />
-        <header-file src="src/ios/aes/sha1.h"   />
-        <source-file src="src/ios/SSZipArchive.m"   />
-        <header-file src="src/ios/SSZipArchive.h"   />
-        <source-file src="src/ios/minizip/zip.c"   />
-        <header-file src="src/ios/minizip/zip.h"   />
-        <source-file src="src/ios/minizip/unzip.c"   />
-        <header-file src="src/ios/minizip/unzip.h"   />
-        <source-file src="src/ios/minizip/mztools.c"   />
-        <header-file src="src/ios/minizip/mztools.h"   />
-        <source-file src="src/ios/minizip/ioapi_buf.c"   />
-        <header-file src="src/ios/minizip/ioapi_buf.h"   />
-        <source-file src="src/ios/minizip/ioapi_mem.c"   />
-        <header-file src="src/ios/minizip/ioapi_mem.h"   />
-        <source-file src="src/ios/minizip/ioapi.c"   />
-        <header-file src="src/ios/minizip/ioapi.h"   />
-        <header-file src="src/ios/minizip/crypt.h"   />
-        <source-file src="src/ios/minizip/minishared.c"   />
-        <header-file src="src/ios/minizip/minishared.h"   />
         <framework src="libz.dylib" />
     </platform>
 
