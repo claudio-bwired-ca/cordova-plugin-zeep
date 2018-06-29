@@ -1,11 +1,11 @@
 //
-//  SSZipArchive.m
-//  SSZipArchive
+//  SSZeepArchive.m
+//  SSZeepArchive
 //
 //  Created by Sam Soffes on 7/21/10.
 //  Copyright (c) Sam Soffes 2010-2015. All rights reserved.
 //
-#import "SSZipArchive.h"
+#import "SSZeepArchive.h"
 #include "unzip.h"
 #include "zip.h"
 #import "zlib.h"
@@ -15,11 +15,11 @@
 
 #define CHUNK 16384
 
-@interface SSZipArchive ()
+@interface SSZeepArchive ()
 + (NSDate *)_dateWithMSDOSFormat:(UInt32)msdosDateTime;
 @end
 
-@implementation SSZipArchive
+@implementation SSZeepArchive
 {
     NSString *_path;
     NSString *_filename;
@@ -38,12 +38,12 @@
     return [self unzipFileAtPath:path toDestination:destination overwrite:overwrite password:password error:error delegate:nil progressHandler:nil completionHandler:nil];
 }
 
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination delegate:(id<SSZipArchiveDelegate>)delegate
++ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination delegate:(id<SSZeepArchiveDelegate>)delegate
 {
     return [self unzipFileAtPath:path toDestination:destination overwrite:YES password:nil error:nil delegate:delegate progressHandler:nil completionHandler:nil];
 }
 
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError **)error delegate:(id<SSZipArchiveDelegate>)delegate
++ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError **)error delegate:(id<SSZeepArchiveDelegate>)delegate
 {
     return [self unzipFileAtPath:path toDestination:destination overwrite:overwrite password:password error:error delegate:delegate progressHandler:nil completionHandler:nil];
 }
@@ -71,7 +71,7 @@
               overwrite:(BOOL)overwrite
                password:(NSString *)password
                   error:(NSError **)error
-               delegate:(id<SSZipArchiveDelegate>)delegate
+               delegate:(id<SSZeepArchiveDelegate>)delegate
         progressHandler:(void (^)(NSString *entry, unz_file_info zipInfo, long entryNumber, long total))progressHandler
       completionHandler:(void (^)(NSString *path, BOOL succeeded, NSError *error))completionHandler
 {
@@ -80,7 +80,7 @@
     if (zip == NULL)
     {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"failed to open zip file"};
-        NSError *err = [NSError errorWithDomain:@"SSZipArchiveErrorDomain" code:-1 userInfo:userInfo];
+        NSError *err = [NSError errorWithDomain:@"SSZeepArchiveErrorDomain" code:-1 userInfo:userInfo];
         if (error)
         {
             *error = err;
@@ -103,7 +103,7 @@
     if (unzGoToFirstFile(zip) != UNZ_OK)
     {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"failed to open first file in zip file"};
-        NSError *err = [NSError errorWithDomain:@"SSZipArchiveErrorDomain" code:-2 userInfo:userInfo];
+        NSError *err = [NSError errorWithDomain:@"SSZeepArchiveErrorDomain" code:-2 userInfo:userInfo];
         if (error)
         {
             *error = err;
@@ -229,7 +229,7 @@
                 [fileManager createDirectoryAtPath:[fullPath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:directoryAttr error:&err];
             }
             if (nil != err) {
-                NSLog(@"[SSZipArchive] Error: %@", err.localizedDescription);
+                NSLog(@"[SSZeepArchive] Error: %@", err.localizedDescription);
             }
             
             if(!fileIsSymbolicLink)
@@ -272,7 +272,7 @@
                         if (attr) {
                             if ([fileManager setAttributes:attr ofItemAtPath:fullPath error:nil] == NO) {
                                 // Can't set attributes
-                                NSLog(@"[SSZipArchive] Failed to set attributes - whilst setting modification date");
+                                NSLog(@"[SSZeepArchive] Failed to set attributes - whilst setting modification date");
                             }
                         }
                     }
@@ -292,7 +292,7 @@
                         // Update attributes
                         if ([fileManager setAttributes:attrs ofItemAtPath:fullPath error:nil] == NO) {
                             // Unable to set the permissions attribute
-                            NSLog(@"[SSZipArchive] Failed to set attributes - whilst setting permissions");
+                            NSLog(@"[SSZeepArchive] Failed to set attributes - whilst setting permissions");
                         }
                         
 #if !__has_feature(objc_arc)
@@ -356,10 +356,10 @@
     NSError * err = nil;
     for (NSDictionary * d in directoriesModificationDates) {
         if (![[NSFileManager defaultManager] setAttributes:@{NSFileModificationDate: d[@"modDate"]} ofItemAtPath:d[@"path"] error:&err]) {
-            NSLog(@"[SSZipArchive] Set attributes failed for directory: %@.", d[@"path"]);
+            NSLog(@"[SSZeepArchive] Set attributes failed for directory: %@.", d[@"path"]);
         }
         if (err) {
-            NSLog(@"[SSZipArchive] Error setting directory file modification date attribute: %@",err.localizedDescription);
+            NSLog(@"[SSZeepArchive] Error setting directory file modification date attribute: %@",err.localizedDescription);
         }
     }
     
@@ -380,7 +380,7 @@
     if (crc_ret == UNZ_CRCERROR)
     {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"crc check failed for file"};
-        retErr = [NSError errorWithDomain:@"SSZipArchiveErrorDomain" code:-3 userInfo:userInfo];
+        retErr = [NSError errorWithDomain:@"SSZeepArchiveErrorDomain" code:-3 userInfo:userInfo];
     }
     if (error)
     {
@@ -396,20 +396,20 @@
 #pragma mark - Zipping
 + (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray *)paths
 {
-    return [SSZipArchive createZipFileAtPath:path withFilesAtPaths:paths withPassword:nil];
+    return [SSZeepArchive createZipFileAtPath:path withFilesAtPaths:paths withPassword:nil];
 }
 + (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath{
-    return [SSZipArchive createZipFileAtPath:path withContentsOfDirectory:directoryPath withPassword:nil];
+    return [SSZeepArchive createZipFileAtPath:path withContentsOfDirectory:directoryPath withPassword:nil];
 }
 
 + (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath keepParentDirectory:(BOOL)keepParentDirector{
-    return [SSZipArchive createZipFileAtPath:path withContentsOfDirectory:directoryPath keepParentDirectory:keepParentDirector withPassword:nil];
+    return [SSZeepArchive createZipFileAtPath:path withContentsOfDirectory:directoryPath keepParentDirectory:keepParentDirector withPassword:nil];
 }
 
 + (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray *)paths withPassword:(NSString *)password
 {
     BOOL success = NO;
-    SSZipArchive *zipArchive = [[SSZipArchive alloc] initWithPath:path];
+    SSZeepArchive *zipArchive = [[SSZeepArchive alloc] initWithPath:path];
     if ([zipArchive open]) {
         for (NSString *filePath in paths) {
             [zipArchive writeFile:filePath withPassword:password];
@@ -433,7 +433,7 @@
     BOOL success = NO;
     
     NSFileManager *fileManager = nil;
-    SSZipArchive *zipArchive = [[SSZipArchive alloc] initWithPath:path];
+    SSZeepArchive *zipArchive = [[SSZeepArchive alloc] initWithPath:path];
     
     if ([zipArchive open]) {
         // use a local filemanager (queue/thread compatibility)
@@ -655,7 +655,7 @@
 
 - (BOOL)close
 {
-    NSAssert((_zip != NULL), @"[SSZipArchive] Attempting to close an archive which was never opened");
+    NSAssert((_zip != NULL), @"[SSZeepArchive] Attempting to close an archive which was never opened");
     zipClose(_zip, NULL);
     return YES;
 }
@@ -690,7 +690,7 @@
     
     NSDateComponents *components = [[NSDateComponents alloc] init];
     
-    NSAssert(0xFFFFFFFF == (kYearMask | kMonthMask | kDayMask | kHourMask | kMinuteMask | kSecondMask), @"[SSZipArchive] MSDOS date masks don't add up");
+    NSAssert(0xFFFFFFFF == (kYearMask | kMonthMask | kDayMask | kHourMask | kMinuteMask | kSecondMask), @"[SSZeepArchive] MSDOS date masks don't add up");
     
     [components setYear:1980 + ((msdosDateTime & kYearMask) >> 25)];
     [components setMonth:(msdosDateTime & kMonthMask) >> 21];

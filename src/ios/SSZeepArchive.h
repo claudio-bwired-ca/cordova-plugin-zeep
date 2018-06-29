@@ -1,27 +1,27 @@
 //
-//  SSZipArchive.h
-//  SSZipArchive
+//  SSZeepArchive.h
+//  SSZeepArchive
 //
 //  Created by Sam Soffes on 7/21/10.
 //  Copyright (c) Sam Soffes 2010-2015. All rights reserved.
 //
 
-#ifndef _SSZIPARCHIVE_H
-#define _SSZIPARCHIVE_H
+#ifndef _SSZEEPARCHIVE_H
+#define _SSZEEPARCHIVE_H
 
 #import <Foundation/Foundation.h>
 #include "Common.h"
 
-@protocol SSZipArchiveDelegate;
+@protocol SSZeepArchiveDelegate;
 
-@interface SSZipArchive : NSObject
+@interface SSZeepArchive : NSObject
 
 // Unzip
 + (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination;
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination delegate:(id<SSZipArchiveDelegate>)delegate;
++ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination delegate:(id<SSZeepArchiveDelegate>)delegate;
 
 + (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError * *)error;
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError * *)error delegate:(id<SSZipArchiveDelegate>)delegate;
++ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError * *)error delegate:(id<SSZeepArchiveDelegate>)delegate;
 
 + (BOOL)unzipFileAtPath:(NSString *)path
     toDestination:(NSString *)destination
@@ -57,7 +57,7 @@
 
 @end
 
-@protocol SSZipArchiveDelegate <NSObject>
+@protocol SSZeepArchiveDelegate <NSObject>
 
 @optional
 
@@ -74,4 +74,4 @@
 
 @end
 
-#endif /* _SSZIPARCHIVE_H */
+#endif /* _SSZEEPARCHIVE_H */
