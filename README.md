@@ -1,4 +1,4 @@
-# cordova-plugin-zeep
+# cordova-plugin-zeep-ionic3
 Zip compression/decompression on the [Apache Cordova](https://cordova.apache.org) / [PhoneGap](http://phonegap.com) platform
 
 ### Platforms
@@ -8,12 +8,12 @@ Zip compression/decompression on the [Apache Cordova](https://cordova.apache.org
 
 ### Add to project
 ```sh
-cordova plugin add cordova-plugin-zeep
+cordova plugin add cordova-plugin-zeep-ionic3
 ```
 
 ### Remove from project
 ```sh
-cordova plugin remove cordova-plugin-zeep
+cordova plugin remove cordova-plugin-zeep-ionic3
 ```
 
 ### Compression (Zeep.zip or $cordovaZeep.zip)

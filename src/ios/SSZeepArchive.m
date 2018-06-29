@@ -6,8 +6,8 @@
 //  Copyright (c) Sam Soffes 2010-2015. All rights reserved.
 //
 #import "SSZeepArchive.h"
-#include "unzip.h"
-#include "zip.h"
+#include "unzeep.h"
+#include "zeep.h"
 #import "zlib.h"
 #import "zconf.h"
 

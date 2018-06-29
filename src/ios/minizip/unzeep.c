@@ -26,7 +26,7 @@
  #endif*/
 
 #include "zlib.h"
-#include "unzip.h"
+#include "unzeep.h"
 
 #include "Common.h"
 
@@ -53,7 +53,7 @@ extern int errno;
 #  include "fileenc.h"
 #endif
 #ifndef NOUNCRYPT
-#  include "crypt.h"
+#  include "mcrypt.h"
 #endif
 
 #ifndef local

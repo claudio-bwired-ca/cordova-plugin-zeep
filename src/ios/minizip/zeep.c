@@ -19,7 +19,7 @@
 #include <string.h>
 #include <time.h>
 #include "zlib.h"
-#include "zip.h"
+#include "zeep.h"
 
 #ifdef STDC
 #  include <stddef.h>
@@ -48,7 +48,7 @@ extern int errno;
 
 #ifndef NOCRYPT
 #  define INCLUDECRYPTINGCODE_IFCRYPTALLOWED
-#  include "crypt.h"
+#  include "mcrypt.h"
 #endif
 
 #ifndef local

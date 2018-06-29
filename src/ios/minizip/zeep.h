@@ -1,4 +1,4 @@
-/* zip.h -- IO on .zip files using zlib
+/* zeep.h -- IO on .zip files using zlib
    Version 1.1, February 14h, 2010
    part of the MiniZip project
 
@@ -26,7 +26,7 @@ extern "C" {
 #endif
 
 #ifndef _ZLIBIOAPI_H
-#  include "ioapi.h"
+#  include "mioapi.h"
 #endif
 
 #ifdef HAVE_BZIP2

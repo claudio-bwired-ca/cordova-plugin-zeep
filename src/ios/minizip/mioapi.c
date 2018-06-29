@@ -1,4 +1,4 @@
-/* ioapi.h -- IO base function header for compress/uncompress .zip
+/* mioapi.h -- IO base function header for compress/uncompress .zip
    part of the MiniZip project
 
    Copyright (C) 1998-2010 Gilles Vollant
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "ioapi.h"
+#include "mioapi.h"
 
 #if defined(_WIN32)
 #  define snprintf _snprintf
