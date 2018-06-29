@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-zeep-ionic3",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Zip compression/decompression for the cordova/phonegap platform support ionic3 deploy (IOS no duplicates zip class)",
   "cordova": {
     "id": "cordova-plugin-zeep-ionic3",

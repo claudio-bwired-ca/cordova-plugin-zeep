@@ -76,7 +76,7 @@
       completionHandler:(void (^)(NSString *path, BOOL succeeded, NSError *error))completionHandler
 {
     // Begin opening
-    zipFile zip = unzOpen((const char*)[path UTF8String]);
+    zipFile zip = unzeepOpen((const char*)[path UTF8String]);
     if (zip == NULL)
     {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"failed to open zip file"};
@@ -97,10 +97,10 @@
     unsigned long long currentPosition = 0;
     
     unz_global_info  globalInfo = {0ul, 0ul};
-    unzGetGlobalInfo(zip, &globalInfo);
+    unzeepGetGlobalInfo(zip, &globalInfo);
     
     // Begin unzipping
-    if (unzGoToFirstFile(zip) != UNZ_OK)
+    if (unzeepGoToFirstFile(zip) != UNZ_OK)
     {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"failed to open first file in zip file"};
         NSError *err = [NSError errorWithDomain:@"SSZeepArchiveErrorDomain" code:-2 userInfo:userInfo];
@@ -135,9 +135,9 @@
     do {
         @autoreleasepool {
             if ([password length] == 0) {
-                ret = unzOpenCurrentFile(zip);
+                ret = unzeepOpenCurrentFile(zip);
             } else {
-                ret = unzOpenCurrentFilePassword(zip, [password cStringUsingEncoding:NSASCIIStringEncoding]);
+                ret = unzeepOpenCurrentFilePassword(zip, [password cStringUsingEncoding:NSASCIIStringEncoding]);
             }
             
             if (ret != UNZ_OK) {
@@ -149,10 +149,10 @@
             unz_file_info fileInfo;
             memset(&fileInfo, 0, sizeof(unz_file_info));
             
-            ret = unzGetCurrentFileInfo(zip, &fileInfo, NULL, 0, NULL, 0, NULL, 0);
+            ret = unzeepGetCurrentFileInfo(zip, &fileInfo, NULL, 0, NULL, 0, NULL, 0);
             if (ret != UNZ_OK) {
                 success = NO;
-                unzCloseCurrentFile(zip);
+                unzeepCloseCurrentFile(zip);
                 break;
             }
             
@@ -182,7 +182,7 @@
                 return NO;
             }
             
-            unzGetCurrentFileInfo(zip, &fileInfo, filename, fileInfo.size_filename + 1, NULL, 0, NULL, 0);
+            unzeepGetCurrentFileInfo(zip, &fileInfo, filename, fileInfo.size_filename + 1, NULL, 0, NULL, 0);
             filename[fileInfo.size_filename] = '\0';
             
             //
@@ -237,15 +237,15 @@
             
             if ([fileManager fileExistsAtPath:fullPath] && !isDirectory && !overwrite) {
                 //FIXME: couldBe CRC Check?
-                unzCloseCurrentFile(zip);
-                ret = unzGoToNextFile(zip);
+                unzeepCloseCurrentFile(zip);
+                ret = unzeepGoToNextFile(zip);
                 continue;
             }
             
             if (!fileIsSymbolicLink) {
                 FILE *fp = fopen((const char*)[fullPath UTF8String], "wb");
                 while (fp) {
-                    int readBytes = unzReadCurrentFile(zip, buffer, 4096);
+                    int readBytes = unzeepReadCurrentFile(zip, buffer, 4096);
                     
                     if (readBytes > 0) {
                         fwrite(buffer, readBytes, 1, fp );
@@ -306,7 +306,7 @@
                 // Assemble the path for the symbolic link
                 NSMutableString* destinationPath = [NSMutableString string];
                 int bytesRead = 0;
-                while((bytesRead = unzReadCurrentFile(zip, buffer, 4096)) > 0)
+                while((bytesRead = unzeepReadCurrentFile(zip, buffer, 4096)) > 0)
                 {
                     buffer[bytesRead] = (int)0;
                     [destinationPath appendString:@((const char*)buffer)];
@@ -322,13 +322,13 @@
                 }
             }
             
-            crc_ret = unzCloseCurrentFile( zip );
+            crc_ret = unzeepCloseCurrentFile( zip );
             if (crc_ret == UNZ_CRCERROR) {
                 //CRC ERROR
                 success = NO;
                 break;
             }
-            ret = unzGoToNextFile( zip );
+            ret = unzeepGoToNextFile( zip );
             
             // Message delegate
             if ([delegate respondsToSelector:@selector(zipArchiveDidUnzipFileAtIndex:totalFiles:archivePath:fileInfo:)]) {
@@ -348,7 +348,7 @@
     } while(ret == UNZ_OK && ret != UNZ_END_OF_LIST_OF_FILE);
     
     // Close
-    unzClose(zip);
+    unzeepClose(zip);
     
     // The process of decompressing the .zip archive causes the modification times on the folders
     // to be set to the present time. So, when we are done, they need to be explicitly set.
@@ -495,7 +495,7 @@
 - (BOOL)open
 {
     NSAssert((_zip == NULL), @"Attempting open an archive which is already open");
-    _zip = zipOpen([_path UTF8String], APPEND_STATUS_CREATE);
+    _zip = zeepOpen([_path UTF8String], APPEND_STATUS_CREATE);
     return (NULL != _zip);
 }
 
@@ -551,10 +551,10 @@
     }
     
     unsigned int len = 0;
-    zipOpenNewFileInZip3(_zip, [[folderName stringByAppendingString:@"/"] UTF8String], &zipInfo, NULL, 0, NULL, 0, NULL, Z_DEFLATED, Z_NO_COMPRESSION, 0, -MAX_WBITS, DEF_MEM_LEVEL,
+    zeepOpenNewFileInZip3(_zip, [[folderName stringByAppendingString:@"/"] UTF8String], &zipInfo, NULL, 0, NULL, 0, NULL, Z_DEFLATED, Z_NO_COMPRESSION, 0, -MAX_WBITS, DEF_MEM_LEVEL,
                          Z_DEFAULT_STRATEGY, [password UTF8String], 0);
-    zipWriteInFileInZip(_zip, &len, 0);
-    zipCloseFileInZip(_zip);
+    zeepWriteInFileInZip(_zip, &len, 0);
+    zeepCloseFileInZip(_zip);
     return YES;
 }
 
@@ -618,16 +618,16 @@
         return NO;
     }
 
-    zipOpenNewFileInZip3(_zip, afileName, &zipInfo, NULL, 0, NULL, 0, NULL, Z_DEFLATED, Z_DEFAULT_COMPRESSION, 0, -MAX_WBITS, DEF_MEM_LEVEL, Z_DEFAULT_STRATEGY, [password UTF8String], 0);
+    zeepOpenNewFileInZip3(_zip, afileName, &zipInfo, NULL, 0, NULL, 0, NULL, Z_DEFLATED, Z_DEFAULT_COMPRESSION, 0, -MAX_WBITS, DEF_MEM_LEVEL, Z_DEFAULT_STRATEGY, [password UTF8String], 0);
     unsigned int len = 0;
     
     while (!feof(input))
     {
         len = (unsigned int) fread(buffer, 1, CHUNK, input);
-        zipWriteInFileInZip(_zip, buffer, len);
+        zeepWriteInFileInZip(_zip, buffer, len);
     }
     
-    zipCloseFileInZip(_zip);
+    zeepCloseFileInZip(_zip);
     free(buffer);
     fclose(input);
     return YES;
@@ -644,11 +644,11 @@
     zip_fileinfo zipInfo = {{0,0,0,0,0,0},0,0,0};
     [self zipInfo:&zipInfo setDate:[NSDate date]];
     
-    zipOpenNewFileInZip3(_zip, [filename UTF8String], &zipInfo, NULL, 0, NULL, 0, NULL, Z_DEFLATED, Z_DEFAULT_COMPRESSION, 0, -MAX_WBITS, DEF_MEM_LEVEL, Z_DEFAULT_STRATEGY, [password UTF8String], 0);
+    zeepOpenNewFileInZip3(_zip, [filename UTF8String], &zipInfo, NULL, 0, NULL, 0, NULL, Z_DEFLATED, Z_DEFAULT_COMPRESSION, 0, -MAX_WBITS, DEF_MEM_LEVEL, Z_DEFAULT_STRATEGY, [password UTF8String], 0);
     
-    zipWriteInFileInZip(_zip, data.bytes, (unsigned int)data.length);
+    zeepWriteInFileInZip(_zip, data.bytes, (unsigned int)data.length);
     
-    zipCloseFileInZip(_zip);
+    zeepCloseFileInZip(_zip);
     return YES;
 }
 
@@ -656,7 +656,7 @@
 - (BOOL)close
 {
     NSAssert((_zip != NULL), @"[SSZeepArchive] Attempting to close an archive which was never opened");
-    zipClose(_zip, NULL);
+    zeepClose(_zip, NULL);
     return YES;
 }
 
